@@ -1,0 +1,28 @@
+COMP 321 Project 5: Malloc
+
+USED 2 SLIPDAYS
+
+<Henry Pu hyp2>
+
+---(Do not write lines of text that exceed the width of this line.)------------
+
+DESIGN DESCRIPTION
+
+<Replace with an English description of your submission's design.> 
+My allocator utilizes segregated free lists to track available blocks based 
+on their size, allowing quick searches. Free blocks within a list are implicitly 
+connected by using their headers and footers to navigate. My allocator uses a 
+first-fit placement policy, allocating the first large enough block found.
+To minimize fragmenetation, my allocator splits larger free blocks when the 
+requested size is smaller than the free blocks to minimize and coalesces 
+adjacent free blocks when a block is freed. Newly freed blocks are then
+inserted at the head of their free list 
+
+checkheap() DESCRIPTION
+
+My checkheap verifies if blocks are correctly aligned, headers and footers 
+match, and checks that the prologue and epilogue are valid. Additionally, it 
+walks through the segregated free lists, ensuring that blocks are properly 
+marked as free and that the total count of free blocks remains consistent. 
+These checks help detect memory corruption or errors in the allocation/freeing 
+logic.
